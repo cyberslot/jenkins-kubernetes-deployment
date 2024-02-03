@@ -5,12 +5,11 @@ pipeline {
   }
   agent any
   stages {
-    stage('Checkout Source') {
-      steps {
-				// git branch 'main',
-        git 'https://github.com/cyberslot/jenkins-kubernetes-deployment.git'
-      }
-    }
+    // stage('Checkout Source') {
+    //   steps {
+    //     git 'https://github.com/cyberslot/jenkins-kubernetes-deployment.git'
+    //   }
+    // }
     stage('Build image') {
       steps{
         script {
