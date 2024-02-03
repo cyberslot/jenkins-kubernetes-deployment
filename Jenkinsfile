@@ -8,7 +8,7 @@ pipeline {
     stage('Checkout Source') {
       steps {
 				// git branch 'main',
-        url 'https://github.com/cyberslot/jenkins-kubernetes-deployment'
+        git 'https://github.com/cyberslot/jenkins-kubernetes-deployment'
       }
     }
     stage('Build image') {
