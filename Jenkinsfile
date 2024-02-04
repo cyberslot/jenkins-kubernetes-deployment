@@ -1,42 +1,41 @@
 pipeline {
-    agent any
-    
-    environment {
-        KUBECONFIG = credentials('test-minikube')
+  environment {
+    dockerimagename = "cyberslot/react-app"
+    dockerImage = ""
+  }
+  agent any
+  stages {
+    // stage('Checkout Source') {
+    //   steps {
+    //     git 'https://github.com/cyberslot/jenkins-kubernetes-deployment.git'
+    //   }
+    // }
+    stage('Build image') {
+      steps{
+        script {
+          dockerImage = docker.build dockerimagename
+        }
+      }
     }
-    
-    stages {
-        stage('Install kubectl') {
-            steps {
-                sh 'curl -LO "https://storage.googleapis.com/kubernetes-release/release/v1.28.3/bin/linux/amd64/kubectl"'
-                sh "chmod +x kubectl"
-                sh 'mkdir -p $HOME/bin'
-                sh 'mv kubectl $HOME/bin/'
-            }
+    stage('Pushing Image') {
+      environment {
+          registryCredential = 'dockerhub-credentials'
+           }
+      steps{
+        script {
+          docker.withRegistry( 'https://registry.hub.docker.com', registryCredential ) {
+            dockerImage.push("latest")
+          }
         }
-        stage('Create Pod Manifest') {
-            steps {
-                script {
-                    def podYaml = """
-apiVersion: v1
-kind: Pod
-metadata:
-  name: simple-pod
-spec:
-  containers:
-    - name: nginx
-      image: nginx:latest
-"""
-                    sh "echo '$podYaml' > pod.yaml"
-                }
-            }
-        }
-        stage('Deploy to Kubernetes') {
-            steps {
-                script {
-                    sh "/var/jenkins_home/bin/kubectl --kubeconfig=$KUBECONFIG apply -f pod.yaml"
-                }
-            }
-        }
+      }
     }
+    stage('Deploying React.js container to Kubernetes') {
+      steps {
+        script {
+          kubernetesDeploy(configs: "deployment.yaml", 
+                                    "service.yaml")
+        }
+      }
+    }
+  }
 }
