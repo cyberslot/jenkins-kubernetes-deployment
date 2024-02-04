@@ -16,6 +16,6 @@ spec:
     spec:
       containers:
       - name: react-app
-        image: bravinwasike/react-app:latest
+        image: cyberslot/react-app:latest
         ports:
         - containerPort: 3000
