@@ -2,6 +2,7 @@ pipeline {
   environment {
     dockerimagename = "cyberslot/react-app"
     dockerImage = ""
+		KUBECONFIG = credentials('test-minikube')
   }
   agent any
   stages {
