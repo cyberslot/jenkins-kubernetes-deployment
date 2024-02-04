@@ -34,8 +34,8 @@ pipeline {
       steps {
         script {
           // kubernetesDeploy(configs: "deployment.yaml", "service.yaml")
-					sh "/var/jenkins_home/bin/kubectl --kubeconfig=$KUBECONFIG apply -f deployment.yaml"
-					sh "/var/jenkins_home/bin/kubectl --kubeconfig=$KUBECONFIG apply -f service.yaml"
+					sh('/var/jenkins_home/bin/kubectl --kubeconfig=$KUBECONFIG apply -f deployment.yaml')
+					sh('/var/jenkins_home/bin/kubectl --kubeconfig=$KUBECONFIG apply -f service.yaml')
         }
       }
     }
