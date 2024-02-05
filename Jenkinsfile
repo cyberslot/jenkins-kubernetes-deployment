@@ -12,13 +12,6 @@ pipeline {
 				checkout scmGit(branches: [[name: 'main']], extensions: [], userRemoteConfigs: [[credentialsId: 'github-credentials', url: 'https://github.com/cyberslot/jenkins-kubernetes-deployment.git']])
       }
     }
-		stage('Run Tests') {
-		  steps {
-		    script {
-		      sh('npm test src/App.test.js') 
-		    }
-		  }
-		}
     stage('Build image') {
       steps{
         script {
@@ -26,6 +19,13 @@ pipeline {
         }
       }
     }
+		stage('Run Tests') {
+		  steps {
+		    script {
+		      sh('npm test src/App.test.js') 
+		    }
+		  }
+		}
     stage('Pushing Image') {
       environment {
           registryCredential = 'dockerhub-credentials'
