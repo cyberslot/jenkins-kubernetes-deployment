@@ -17,12 +17,13 @@ spec:
       containers:
       - name: react-app
         image: cyberslot/react-app:latest
-        ports:
-        - containerPort: 3000
         resources:
           requests:
-            memory: "10Mi"
+            # memory: "10Mi"
             cpu: "25m"
           limits:
-            memory: "25Mi"
+            memory: "250Mi"
             cpu: "50m"
+        ports:
+        - containerPort: 3000
+        
