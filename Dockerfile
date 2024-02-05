@@ -11,7 +11,7 @@ RUN npm i
 ## Copy the remaining React.js application folders and files from the `jenkins-kubernetes-deployment` local folder to the Docker react-app working directory
 COPY . .
 ## Run test(s)
-RUN npm test src/App.test.js
+RUN npm t src/App.test.js
 ## Expose the React.js application container on port 3000
 EXPOSE 3000
 ## The command to start the React.js application container
