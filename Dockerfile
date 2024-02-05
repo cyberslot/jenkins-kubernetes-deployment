@@ -6,8 +6,10 @@ WORKDIR /react-app
 ## Copy the React.js application dependencies from the package.json to the react-app working directory.
 COPY package.json .
 COPY package-lock.json .
-## install all the React.js application dependencies
+## Install all the React.js application dependencies
 RUN npm i
+## Run test(s)
+RUN npm test src/App.test.js
 ## Copy the remaining React.js application folders and files from the `jenkins-kubernetes-deployment` local folder to the Docker react-app working directory
 COPY . .
 ## Expose the React.js application container on port 3000

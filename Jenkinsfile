@@ -19,13 +19,13 @@ pipeline {
         }
       }
     }
-		stage('Run Tests') {
-		  steps {
-		    script {
-		      sh('npm test src/App.test.js') 
-		    }
-		  }
-		}
+		// stage('Run Tests') {
+		//   steps {
+		//     script {
+		//       sh('npm test src/App.test.js') 
+		//     }
+		//   }
+		// }
     stage('Pushing Image') {
       environment {
           registryCredential = 'dockerhub-credentials'
