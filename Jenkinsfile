@@ -15,7 +15,7 @@ pipeline {
 		stage('Run Tests') {
 		  steps {
 		    script {
-		      sh('npm test App.test.js') 
+		      sh('npm test src/App.test.js') 
 		    }
 		  }
 		}
