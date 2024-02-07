@@ -16,14 +16,40 @@ spec:
     spec:
       containers:
       - name: react-app
-        image: cyberslot/react-app:latest
+        # -- Minikube --
+        # image: cyberslot/react-app:latest
+        # -- GKE --
+        image: web-project-init/react-app
         # resources:
           # requests:
-        #     # memory: "10Mi"
+        #     memory: "10Mi"
         #     cpu: "25m"
         #   limits:
         #     memory: "500Mi"
         #     cpu: "50m"
         ports:
         - containerPort: 3000
-        
+      # -- GKE part --
+      # tolerations:
+      # - key: instance_type
+      #   value: spot
+      #   effect: NoSchedule
+      #   operator: Equal
+      # affinity:
+      #   nodeAffinity:
+      #     requiredDuringSchedulingIgnoredDuringExecution:
+      #       nodeSelectorTerms:
+      #       - matchExpressions:
+      #         - key: team
+      #           operator: In
+      #           values:
+      #           - devops
+      #   podAntiAffinity:
+      #     requiredDuringSchedulingIgnoredDuringExecution:
+      #     - labelSelector:
+      #         matchExpressions:
+      #         - key: app
+      #           operator: In
+      #           values:
+      #           - nginx
+      #       topologyKey: kubernetes.io/hostname

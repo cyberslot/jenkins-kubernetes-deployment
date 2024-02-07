@@ -1,8 +1,11 @@
 pipeline {
   environment {
-    dockerimagename = "cyberslot/react-app"
+		// DockerHub
+    // dockerimagename = "cyberslot/react-app"
+		dockerimagename = "web-project-init/react-app"
     dockerImage = ""
-		KUBECONFIG = credentials('test-minikube')
+		// Minikube
+		// KUBECONFIG = credentials('test-minikube')
   }
   agent any
   stages {
@@ -13,12 +16,13 @@ pipeline {
       }
     }
     stage('Build image') {
-      steps{
+      steps {
         script {
           dockerImage = docker.build dockerimagename
         }
       }
     }
+		// -- Placed in Dockerfile --
 		// stage('Run Tests') {
 		//   steps {
 		//     script {
@@ -28,9 +32,12 @@ pipeline {
 		// }
     stage('Pushing Image') {
       environment {
-          registryCredential = 'dockerhub-credentials'
-           }
-      steps{
+					// -- Minikube --
+          // registryCredential = 'dockerhub-credentials'
+					// -- GCP --
+					registryCredential = 'gcr-credentials'
+          }
+      steps {
         script {
           docker.withRegistry( 'https://registry.hub.docker.com', registryCredential ) {
             dockerImage.push("latest")
