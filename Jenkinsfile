@@ -2,7 +2,7 @@ pipeline {
   environment {
 		// DockerHub
     // dockerimagename = "cyberslot/react-app"
-		dockerimagename = "gcr.io/web-project-init/react-app"
+		dockerimagename = "europe-docker.pkg.dev/web-project-init/jenkins-repo/react-app"
     dockerImage = ""
 		// Minikube
 		// KUBECONFIG = credentials('test-minikube')
@@ -41,7 +41,7 @@ pipeline {
         script {
 					// -- DockerHub --
           // docker.withRegistry( 'https://registry.hub.docker.com', registryCredential ) {
-					docker.withRegistry( 'https://eu.gcr.io', registryCredential ) {
+					docker.withRegistry( 'https://europe-docker.pkg.dev/web-project-init/eu.gcr.io', registryCredential ) {
             dockerImage.push("latest")
           }
         }
