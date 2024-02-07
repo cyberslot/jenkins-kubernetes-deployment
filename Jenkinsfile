@@ -41,7 +41,7 @@ pipeline {
         script {
 					// -- DockerHub --
           // docker.withRegistry( 'https://registry.hub.docker.com', registryCredential ) {
-					docker.withRegistry( 'gcr.io/web-project-init/react-app', registryCredential ) {
+					docker.withRegistry( 'https://eu.gcr.io', registryCredential ) {
             dockerImage.push("latest")
           }
         }
