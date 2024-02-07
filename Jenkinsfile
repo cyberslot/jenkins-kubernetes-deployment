@@ -2,7 +2,7 @@ pipeline {
   environment {
 		// DockerHub
     // dockerimagename = "cyberslot/react-app"
-		dockerimagename = "web-project-init/react-app"
+		dockerimagename = "gcr.io/web-project-init/react-app"
     dockerImage = ""
 		// Minikube
 		// KUBECONFIG = credentials('test-minikube')
