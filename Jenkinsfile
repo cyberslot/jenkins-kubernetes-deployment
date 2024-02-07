@@ -31,17 +31,17 @@ pipeline {
 		//   }
 		// }
     stage('Pushing Image') {
-      environment {
+      // environment {
 					// -- DockerHub --
           // registryCredential = 'dockerhub-credentials'
 					// -- GCP --
-					registryCredential = 'gcr-credentials'
-          }
+					// registryCredential = 'gcr-credentials'
+          // }
       steps {
         script {
 					// -- DockerHub --
           // docker.withRegistry( 'https://registry.hub.docker.com', registryCredential ) {
-					docker.withRegistry( 'https://europe-docker.pkg.dev/web-project-init/eu.gcr.io', registryCredential ) {
+					docker.withRegistry( 'https:///eu.gcr.io', "gcr:google-container-registry" ) {
             dockerImage.push("latest")
           }
         }
