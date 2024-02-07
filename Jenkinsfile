@@ -32,14 +32,16 @@ pipeline {
 		// }
     stage('Pushing Image') {
       environment {
-					// -- Minikube --
+					// -- DockerHub --
           // registryCredential = 'dockerhub-credentials'
 					// -- GCP --
 					registryCredential = 'gcr-credentials'
           }
       steps {
         script {
-          docker.withRegistry( 'https://registry.hub.docker.com', registryCredential ) {
+					// -- DockerHub --
+          // docker.withRegistry( 'https://registry.hub.docker.com', registryCredential ) {
+					docker.withRegistry( 'gcr.io/web-project-init/react-app', registryCredential ) {
             dockerImage.push("latest")
           }
         }
