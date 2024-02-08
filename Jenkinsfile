@@ -1,10 +1,10 @@
 pipeline {
   environment {
-		// DockerHub
+		// -- DockerHub --
     // dockerimagename = "cyberslot/react-app"
 		dockerimagename = "europe-docker.pkg.dev/web-project-init/eu.gcr.io/react-app"
     dockerImage = ""
-		// Minikube
+		// -- Minikube --
 		// KUBECONFIG = credentials('test-minikube')
   }
   agent any
@@ -51,8 +51,11 @@ pipeline {
       steps {
         script {
           // kubernetesDeploy(configs: "deployment.yaml", "service.yaml")
-					sh('/var/jenkins_home/bin/kubectl --kubeconfig=$KUBECONFIG apply -f deployment.yaml')
-					sh('/var/jenkins_home/bin/kubectl --kubeconfig=$KUBECONFIG apply -f service.yaml')
+					// -- Minikube --
+					// sh('/var/jenkins_home/bin/kubectl --kubeconfig=$KUBECONFIG apply -f deployment.yaml')
+					// sh('/var/jenkins_home/bin/kubectl --kubeconfig=$KUBECONFIG apply -f service.yaml')
+					sh('kubectl apply -f deployment.yaml')
+					sh('kubectl apply -f service.yaml')
         }
       }
     }
