@@ -43,7 +43,7 @@ pipeline {
           // docker.withRegistry( 'https://registry.hub.docker.com', registryCredential ) {
 					withCredentials([file(credentialsId: 'gcr-id', variable: 'SERVICE_ACCOUNT_KEY')]) {
 						sh 'gcloud auth activate-service-account --key-file=$SERVICE_ACCOUNT_KEY'
-						sh 'gcloud auth configure-docker europe-west3-docker.pkg.dev'
+						sh 'gcloud auth configure-docker europe-docker.pkg.dev'
             dockerImage.push("latest")
           }
         }
