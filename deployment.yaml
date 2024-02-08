@@ -20,13 +20,13 @@ spec:
         # image: cyberslot/react-app:latest
         # -- GKE --
         image: europe-docker.pkg.dev/web-project-init/eu.gcr.io/react-app:latest
-        # resources:
-          # requests:
-        #     memory: "10Mi"
-        #     cpu: "25m"
-        #   limits:
-        #     memory: "500Mi"
-        #     cpu: "50m"
+        resources:
+          requests:
+            memory: "50Mi"
+            cpu: "25m"
+          limits:
+            memory: "100Mi"
+            cpu: "50m"
         ports:
         - containerPort: 3000
       # -- GKE part --
