@@ -19,7 +19,7 @@ spec:
         # -- Minikube --
         # image: cyberslot/react-app:latest
         # -- GKE --
-        image: europe-docker.pkg.dev/web-project-init/eu.gcr.io/react-app
+        image: europe-docker.pkg.dev/web-project-init/eu.gcr.io/react-app:latest
         # resources:
           # requests:
         #     memory: "10Mi"
