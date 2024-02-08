@@ -6,6 +6,7 @@ pipeline {
     dockerImage = ""
 		// -- Minikube --
 		// KUBECONFIG = credentials('test-minikube')
+		KUBECONFIG = credentials('gke')
   }
   agent any
   stages {
@@ -54,8 +55,8 @@ pipeline {
 					// -- Minikube --
 					// sh('/var/jenkins_home/bin/kubectl --kubeconfig=$KUBECONFIG apply -f deployment.yaml')
 					// sh('/var/jenkins_home/bin/kubectl --kubeconfig=$KUBECONFIG apply -f service.yaml')
-					sh('kubectl apply -f deployment.yaml')
-					sh('kubectl apply -f service.yaml')
+					sh('kubectl --kubeconfig=$KUBECONFIG apply -f deployment.yaml')
+					sh('kubectl --kubeconfig=$KUBECONFIG apply -f service.yaml')
         }
       }
     }
