@@ -35,13 +35,14 @@ pipeline {
 					// -- DockerHub --
           // registryCredential = 'dockerhub-credentials'
 					// -- GCP --
-					// registryCredential = 'gcr-credentials'
+					registryCredential = 'google-container-registry'
           // }
       steps {
         script {
 					// -- DockerHub --
           // docker.withRegistry( 'https://registry.hub.docker.com', registryCredential ) {
-					docker.withRegistry( 'https:///eu.gcr.io', "gcr:google-container-registry" ) {
+					withCredentials([file(credentialsId: 'gcr-id', variable: 'SERVICE_ACCOUNT_KEY')]) {
+						sh 'gcloud auth activate-service-account --key-file=$SERVICE_ACCOUNT_KEY'
             dockerImage.push("latest")
           }
         }
