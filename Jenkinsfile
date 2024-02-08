@@ -34,8 +34,6 @@ pipeline {
       // environment {
 					// -- DockerHub --
           // registryCredential = 'dockerhub-credentials'
-					// -- GCP --
-					// registryCredential = 'google-container-registry'
           // }
       steps {
         script {
