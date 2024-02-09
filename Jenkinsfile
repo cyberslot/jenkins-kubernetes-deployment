@@ -66,7 +66,7 @@ pipeline {
 					// kubectl --kubeconfig=$KUBECONFIG apply -f deployment.yaml
 					// kubectl --kubeconfig=$KUBECONFIG apply -f service.yaml
 					// '''
-					sh 'helm install reactapp --repo https://github.com/cyberslot/private-gke/tree/main/reactapp-chart'
+					sh 'helm install reactapp https://github.com/cyberslot/private-gke/tree/main/reactapp-chart'
         }
       }
     }
