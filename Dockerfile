@@ -18,7 +18,7 @@ EXPOSE 3000
 CMD ["npm", "start"]
 
 #===========================================================================
-# # Use Jenkins base imag
+# # Use Jenkins base image
 # FROM jenkins/jenkins:lts
 # USER root
 # # Install kubectl
