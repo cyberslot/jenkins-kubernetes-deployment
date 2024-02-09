@@ -62,11 +62,11 @@ pipeline {
 
 					// sh('kubectl apply -f deployment.yaml')
 					// sh('kubectl apply -f service.yaml')
-					// sh '''
-					// kubectl --kubeconfig=$KUBECONFIG apply -f deployment.yaml
-					// kubectl --kubeconfig=$KUBECONFIG apply -f service.yaml
-					// '''
-					sh 'helm install reactapp https://github.com/cyberslot/private-gke/tree/main/reactapp.tgz'
+					sh '''
+					kubectl --kubeconfig=$KUBECONFIG apply -f deployment.yaml
+					kubectl --kubeconfig=$KUBECONFIG apply -f service.yaml
+					'''
+					// sh 'helm install reactapp https://github.com/cyberslot/private-gke/tree/main/reactapp.tgz'
         }
       }
     }
