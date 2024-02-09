@@ -41,8 +41,12 @@ pipeline {
 					// -- DockerHub --
           // docker.withRegistry( 'https://registry.hub.docker.com', registryCredential ) {
 					withCredentials([file(credentialsId: 'gcr-id', variable: 'SERVICE_ACCOUNT_KEY')]) {
-						sh 'gcloud auth activate-service-account --key-file=$SERVICE_ACCOUNT_KEY'
-						sh 'gcloud auth configure-docker europe-docker.pkg.dev'
+						// sh 'gcloud auth activate-service-account --key-file=$SERVICE_ACCOUNT_KEY'
+						// sh 'gcloud auth configure-docker europe-docker.pkg.dev'
+						sh '''
+						gcloud auth activate-service-account --key-file=$SERVICE_ACCOUNT_KEY
+						gcloud auth configure-docker europe-docker.pkg.dev
+						'''
             dockerImage.push("latest")
           }
         }
@@ -55,8 +59,13 @@ pipeline {
 					// -- Minikube --
 					// sh('/var/jenkins_home/bin/kubectl --kubeconfig=$KUBECONFIG apply -f deployment.yaml')
 					// sh('/var/jenkins_home/bin/kubectl --kubeconfig=$KUBECONFIG apply -f service.yaml')
-					sh('kubectl --kubeconfig=$KUBECONFIG apply -f deployment.yaml')
-					sh('kubectl --kubeconfig=$KUBECONFIG apply -f service.yaml')
+
+					// sh('kubectl apply -f deployment.yaml')
+					// sh('kubectl apply -f service.yaml')
+					sh '''
+					kubectl apply -f deployment.yaml
+					kubectl apply -f service.yaml
+					'''
         }
       }
     }
